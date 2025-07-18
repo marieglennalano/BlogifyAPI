@@ -4,6 +4,25 @@
 
 ---
 
+## 🌐 Deployed API
+
+**Base URL:**  
+`https://blogifyapi-ueu8.onrender.com`
+
+---
+
+## 📦 Tech Stack
+
+- Node.js + Express.js
+- MongoDB (with Mongoose)
+- JWT Authentication
+- Google OAuth 2.0
+- bcrypt (for password hashing)
+- dotenv
+- CORS
+
+---
+
 ## 🚀 Features
 
 ### 👤 Users
@@ -30,15 +49,15 @@
 ## 📁 Project Structure
 
 ```
-Blogify/
-├── client/           # React frontend (in progress)
-├── server/           # Node.js backend
-│   ├── controllers/  # Route logic
-│   ├── models/       # Mongoose schemas
-│   ├── routes/       # API endpoints
-│   ├── auth.js       # JWT & auth middleware
-│   ├── index.js      # Main entry point
-│   └── .env          # Environment config
+server/
+├── controllers/ # Route handlers (users, blogs, comments)
+├── middleware/ # Auth & error middleware
+├── models/ # Mongoose schemas
+├── routes/ # Route declarations
+├── index.js # Main entry point
+├── .env # Environment variables
+├── package.json
+└── README.md
 ```
 
 ---
@@ -91,8 +110,9 @@ npm install
 
 ```env
 PORT=4000
-MONGODB_STRING=<your_mongo_connection_string>
-JWT_SECRET_KEY=BlogifyAPI
+MONGO_URI=your-mongodb-uri
+JWT_SECRET=your-secret-key
+GOOGLE_CLIENT_ID=your-google-client-id
 ```
 
 4. **Start the backend server:**
@@ -107,36 +127,30 @@ npm run dev
 
 ### 🔐 Authentication Routes
 
-| Endpoint                  | Method | Description             |
-|---------------------------|--------|-------------------------|
-| `/users/register`         | POST   | Register a new user     |
-| `/users/login`            | POST   | Log in and get token    |
-| `/users/details`          | GET    | Get user info *(token)* |
-| `/users/change-password`  | PUT    | Change user password    |
-| `/users/update-profile`   | PUT    | Update user info        |
+Method	Endpoint	Description
+POST	/users/register	Register a new user
+POST	/users/login	Login with email/pass
+POST	/users/google-login	Login via Google OAuth
+GET	/users/profile	Get user profile (auth)
 
 ---
 
 ### 📝 Blog Routes
 
-| Endpoint             | Method | Description                          |
-|----------------------|--------|--------------------------------------|
-| `/blogs/create`      | POST   | Create a new blog *(token)*          |
-| `/blogs/all`         | GET    | Get all blogs                        |
-| `/blogs/view/:id`    | GET    | Get one blog post by ID              |
-| `/blogs/edit/:id`    | PATCH  | Edit blog *(author or admin only)*   |
-| `/blogs/remove/:id`  | DELETE | Delete blog *(author or admin only)* |
-
+Method	Endpoint	Description
+POST	/blogs/create	Create new blog (auth)
+GET	/blogs/all	Get all blog posts
+GET	/blogs/:id	Get blog by ID
+PATCH	/blogs/:id	Update blog (auth)
+DELETE	/blogs/:id	Delete blog (auth)
 ---
 
 ### 💬 Comment Routes
 
-| Endpoint                        | Method | Description                          |
-|----------------------------------|--------|--------------------------------------|
-| `/comments/add/:blogId`         | POST   | Add a comment *(token)*              |
-| `/comments/blog/:blogId`        | GET    | View comments for a blog post        |
-| `/comments/delete/:commentId`   | DELETE | Admin delete any comment *(token)*   |
-
+Method	Endpoint	Description
+POST	/comments/:blogId	Add comment to a blog
+PATCH	/comments/:commentId	Edit a comment (auth)
+DELETE	/comments/:commentId	Delete a comment (auth)
 ---
 
 ## ✅ Example Token Header
@@ -147,11 +161,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR...
 
 ---
 
-## 📌 To Do
-- [ ] React frontend UI (`client/`)
-- [ ] Like system
-- [ ] Admin dashboard
-- [ ] Pagination and search
+🛡️ Google OAuth Setup
+Go to Google Cloud Console
+
+Create a new project
+
+Enable OAuth 2.0 APIs
+
+Add a new OAuth Client ID for Web
+
+Authorized origin: http://localhost:3000 (or your frontend domain)
+
+Copy Client ID to .env as GOOGLE_CLIENT_ID
 
 ---
 
