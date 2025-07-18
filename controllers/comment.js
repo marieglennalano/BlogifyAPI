@@ -50,3 +50,14 @@ exports.deleteComment = async (req, res) => {
     errorHandler(err, req, res);
   }
 };
+
+// [SECTION] Count Comments
+exports.countComments = async (req, res) => {
+  try {
+    const count = await Comment.countDocuments();
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ message: 'Error counting comments' });
+  }
+};
+:

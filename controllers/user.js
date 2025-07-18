@@ -197,3 +197,13 @@ module.exports.updateUserInfo = async (req, res) => {
     errorHandler(err, req, res);
   }
 };
+
+// [SECTION] Count Users
+exports.countUsers = async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ message: 'Error counting users' });
+  }
+};
