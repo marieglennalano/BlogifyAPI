@@ -20,11 +20,12 @@ router.post("/login", userController.loginUser);
 //[Section] Activity: Route for retrieving user details
 router.get("/details", verify, userController.getProfile);
 
-// This route is Chatgpt generated
 router.put('/change-password', verify, userController.changePassword);
 
 router.put('/update-profile', verify, userController.updateUserInfo);
 
+//[SECTION] Route for Google Login
+router.post('/google-login', userController.googleLogin);
 
 module.exports = router;
 
