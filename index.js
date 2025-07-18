@@ -8,6 +8,7 @@ const cors = require('cors');
 const userRoutes = require('./routes/user');
 const blogRoutes = require('./routes/blog');
 const commentRoutes = require('./routes/comment');
+const adminRoutes = require('./routes/admin');
 
 
 //[SECTION] Environment Setup
@@ -43,6 +44,7 @@ mongoose.connection.once('open', () => console.log('Now connected to MongoDB Atl
 app.use("/users", userRoutes);
 app.use('/blogs', blogRoutes);
 app.use("/comments", commentRoutes);
+app.use('/admin', adminRoutes);
 
 //[SECTION] Server Gateway Response
 

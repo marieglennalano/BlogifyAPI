@@ -79,3 +79,26 @@ exports.deleteBlog = async (req, res) => {
     errorHandler(err, req, res);
   }
 };
+
+// Count all blogs
+exports.countBlogs = async (req, res) => {
+  try {
+    const count = await Blog.countDocuments();
+    res.json({ count });
+  } catch (err) {
+    res.status(500).json({ message: 'Error counting blogs' });
+  }
+};
+
+// Get latest 5 blogs
+exports.getRecentBlogs = async (req, res) => {
+  try {
+    const blogs = await Blog.find()
+      .populate('author', 'firstName lastName')
+      .sort({ createdAt: -1 })
+      .limit(5);
+    res.json(blogs);
+  } catch (err) {
+    res.status(500).json({ message: 'Error fetching recent blogs' });
+  }
+};
