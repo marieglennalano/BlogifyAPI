@@ -129,4 +129,5 @@ MIT
 
 ## 👨‍💻 Author
 
-Built with ❤️ by [Your Name]
+Build with ❤️ by Marie Glenn Alano  
+[GitHub Profile](https://github.com/marieglennalano)
