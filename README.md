@@ -151,6 +151,7 @@ Method	Endpoint	Description
 POST	/comments/:blogId	Add comment to a blog
 PATCH	/comments/:commentId	Edit a comment (auth)
 DELETE	/comments/:commentId	Delete a comment (auth)
+
 ---
 
 ## ✅ Example Token Header
