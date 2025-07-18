@@ -60,4 +60,3 @@ exports.countComments = async (req, res) => {
     res.status(500).json({ message: 'Error counting comments' });
   }
 };
-:
