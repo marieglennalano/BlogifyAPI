@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
     //to be updated when we connect this to our client
-    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://blogify-sigma-seven.vercel.app/'],
+    origin: ['http://localhost:3000', 'http://localhost:4000', 'https://blogify-sigma-seven.vercel.app'],
     credentials: true,
     optionsSuccessStatus: 200
 };
