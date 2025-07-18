@@ -1,8 +1,11 @@
-const router = require('express').Router();
-const { verify, verifyAdmin } = require('../middleware/auth');
-const blogController = require('../controllers/blogController');
-const userController = require('../controllers/userController');
-const commentController = require('../controllers/commentController');
+const express = require('express');
+const router = express.Router();
+const { verify, verifyAdmin } = require('../auth');
+
+// Use existing controller files
+const blogController = require('../controllers/blog');
+const userController = require('../controllers/user');
+const commentController = require('../controllers/comment');
 
 // Admin Dashboard Stats
 router.get('/blog-count', verify, verifyAdmin, blogController.countBlogs);
